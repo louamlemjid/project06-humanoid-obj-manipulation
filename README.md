@@ -1,0 +1,1 @@
+# project06-humanoid-obj-manipulation
