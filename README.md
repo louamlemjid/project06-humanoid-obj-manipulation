@@ -1,1 +1,2 @@
 # project06-humanoid-obj-manipulation
+This project is part of an internship with EagleProjects, focusing on humanoid robot object manipulation. The goal is to develop, implement, and evaluate algorithms that enable a humanoid robot to interact with and manipulate various objects in a simulated or real-world environment. The project covers aspects such as perception, planning, control, and integration with robotic frameworks.
