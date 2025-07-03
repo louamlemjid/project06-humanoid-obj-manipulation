@@ -2,10 +2,7 @@
   <compiler angle="radian" meshdir="assets" autolimits="true"/>
   <option cone="elliptic" impratio="10"/>
 
-  <!-- Include both hands -->
-  <include file="left_hand.xml"/>
-  <include file="right_hand.xml"/>
-
+  
   <!-- Global visual settings -->
   <visual>
     <rgba haze="0.15 0.25 0.35 1"/>
