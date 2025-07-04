@@ -7,13 +7,12 @@
     <body name="ball" pos="0 0 0">
       <freejoint/>
       <geom name="ball_geom" 
-            type="sphere" 
-            size="0.025" 
-            material="ball_material"
-            condim="6" 
-            priority="1"
-            friction="0.6 0.01 0.003"
-            density="800"/>
+        type="ellipsoid" 
+        size="0.03 0.04 0.02" 
+        rgba="0.5 0.7 0.5 1" 
+        condim="6" 
+        priority="1"
+        friction="0.5 0.01 0.003"/>
       <inertial pos="0 0 0" mass="0.052" diaginertia="0.00003 0.00003 0.00003"/>
     </body>
   </worldbody>
