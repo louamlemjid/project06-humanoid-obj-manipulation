@@ -1,7 +1,12 @@
-<mujoco model="bimanual_hand_scene">
+<mujoco model="left_hand_ball_scene">
   <compiler angle="radian" meshdir="assets" autolimits="true"/>
   <option cone="elliptic" impratio="10"/>
 
+  <!-- Include left hand model -->
+  <include file="left_hand.xml"/>
+  
+  <!-- Include ball object -->
+  <include file="../object_manipulation/ball.xml"/>
   
   <!-- Global visual settings -->
   <visual>
@@ -26,21 +31,23 @@
     <!-- Ground -->
     <geom name="floor" pos="0 0 -0.1" size="0 0 0.05" type="plane" material="groundplane"/>
 
-    <!-- Object in the center -->
-    <body name="object" pos="0.3 0 0.1">
-      <freejoint/>
-      <geom type="ellipsoid" size="0.03 0.04 0.02" rgba="0.5 0.7 0.5 1" condim="6" priority="1"
-            friction="0.5 0.01 0.003"/>
+    <!-- Position ball in the center where hand can reach it -->
+    <body name="manipulation_ball" pos="0.2 0 0.05">
+      <freejoint name="ball_freejoint"/>
+      <geom name="ball_geom" 
+            type="sphere" 
+            size="0.025" 
+            rgba="0.3 0.7 0.3 1"
+            condim="6" 
+            priority="1"
+            friction="0.6 0.01 0.003"
+            density="800"/>
+      <inertial pos="0 0 0" mass="0.052" diaginertia="0.00003 0.00003 0.00003"/>
     </body>
 
     <!-- Position left hand -->
-    <body name="left_hand_body" pos="0.15 0 0">
-      <include file="left_hand.xml"/>
-    </body>
-
-    <!-- Position right hand -->
-    <body name="right_hand_body" pos="0.45 0 0">
-      <include file="right_hand.xml"/>
+    <body name="left_hand_mount" pos="0 0 0">
+      <!-- Left hand will be positioned at the origin -->
     </body>
   </worldbody>
 </mujoco>

@@ -1,7 +1,7 @@
 import mujoco
 import os
 
-model_path = os.path.join("models", "unitree_h1", "h1.xml")
+model_path = os.path.join("models", "dex_hand", "scene_left.xml")
 
 try:
     model = mujoco.MjModel.from_xml_path(model_path)

@@ -1,0 +1,20 @@
+# Core MuJoCo and simulation packages
+mujoco>=3.0.0
+# Scientific computing and numerical libraries
+numpy>=1.21.0
+dm_control>=1.0.31
+
+# Machine learning frameworks (for potential RL training)
+#torch>=2.0.0
+#torchvision>=0.15.0
+gymnasium>=0.28.0
+
+# Visualization and plotting
+matplotlib>=3.5.0
+
+# Video recording and image processing
+opencv-python>=4.5.0
+imageio>=2.9.0
+pillow>=8.0.0
+
+stable-baselines3[extra]

@@ -1,0 +1,20 @@
+<mujoco model="cube">
+  <asset>
+    <material name="cube_material" rgba="0.8 0.3 0.3 1" shininess="0.5"/>
+  </asset>
+
+  <worldbody>
+    <body name="cube" pos="0 0 0">
+      <freejoint/>
+      <geom name="cube_geom" 
+            type="box" 
+            size="0.025 0.025 0.025" 
+            material="cube_material"
+            condim="6" 
+            priority="1"
+            friction="0.8 0.01 0.003"
+            density="1000"/>
+      <inertial pos="0 0 0" mass="0.125" diaginertia="0.0001 0.0001 0.0001"/>
+    </body>
+  </worldbody>
+</mujoco>
