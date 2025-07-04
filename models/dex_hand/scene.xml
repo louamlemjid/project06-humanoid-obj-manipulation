@@ -31,23 +31,5 @@
     <!-- Ground -->
     <geom name="floor" pos="0 0 -0.1" size="0 0 0.05" type="plane" material="groundplane"/>
 
-    <!-- Position ball in the center where hand can reach it -->
-    <body name="manipulation_ball" pos="0.2 0 0.05">
-      <freejoint name="ball_freejoint"/>
-      <geom name="ball_geom" 
-            type="sphere" 
-            size="0.025" 
-            rgba="0.3 0.7 0.3 1"
-            condim="6" 
-            priority="1"
-            friction="0.6 0.01 0.003"
-            density="800"/>
-      <inertial pos="0 0 0" mass="0.052" diaginertia="0.00003 0.00003 0.00003"/>
-    </body>
-
-    <!-- Position left hand -->
-    <body name="left_hand_mount" pos="0 0 0">
-      <!-- Left hand will be positioned at the origin -->
-    </body>
   </worldbody>
 </mujoco>
