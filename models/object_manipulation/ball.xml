@@ -1,4 +1,4 @@
-
+<mujoco model="ball">
   <asset>
     <material name="ball_material" rgba="0.3 0.7 0.3 1" shininess="0.8"/>
   </asset>
@@ -16,4 +16,4 @@
       <inertial pos="0 0 0" mass="0.052" diaginertia="0.00003 0.00003 0.00003"/>
     </body>
   </worldbody>
-
+</mujoco>
