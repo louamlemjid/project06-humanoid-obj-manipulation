@@ -3,7 +3,7 @@
   <statistic extent="0.3" center="0.3 0 0"/>
   
   <!-- Include left hand model -->
-  <include file="left_hand.xml"/>
+  <include file="./left_hand.xml"/>
   
   
   <!-- Global visual settings -->
