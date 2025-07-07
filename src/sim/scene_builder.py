@@ -10,7 +10,7 @@ class SceneBuilder:
     """
     
     @staticmethod
-    def build_from_xml(scene_xml_path: str) -> mujoco.Physics:
+    def build(scene_xml_path: str) -> mujoco.Physics:
         """
         Loads and compiles a MuJoCo scene from a specified XML file.
 
