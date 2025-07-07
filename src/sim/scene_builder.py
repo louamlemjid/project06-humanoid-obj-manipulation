@@ -2,6 +2,8 @@
 
 from dm_control import mujoco
 import os
+import PIL.Image
+from dm_control.mujoco.wrapper.mjbindings import enums
 
 class SceneBuilder:
     """

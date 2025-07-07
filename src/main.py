@@ -17,21 +17,14 @@ def load_config(config_path: str) -> dict:
         return yaml.safe_load(file)
 
 def main():
-    config_path = "configs/hand_manipulation_config.yaml"
-    config = load_config(config_path)
-    print("Configuration loaded.")
-
-    # --- 1. Build the MuJoCo Scene ---
-    scene_builder = SceneBuilder(
-        hand_model_path=config["env"]["hand_model_path"],
-        object_config=config["object"]
-    )
-    physics = scene_builder.build()
+    pathToModel = "./project06-humanoid-obj-manipulation/models/dex_hand/cube_scene.xml"
+    sceneBuilder = SceneBuilder()
+    physics = sceneBuilder.build(pathToModel)
     print("MuJoCo scene built successfully.")
 
     # --- 2. Initialize Robot and Object Interfaces ---
     robot = DexHandRobot(physics)
-    manipulable_object = CubeObject(physics, config["object"])
+    manipulable_object = CubeObject(physics)
     print("Robot and Object interfaces initialized.")
 
     # --- 3. Setup Observation and Reward Composers ---
