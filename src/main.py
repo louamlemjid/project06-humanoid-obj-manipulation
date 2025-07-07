@@ -24,7 +24,20 @@ def main():
 
     # --- 2. Initialize Robot and Object Interfaces ---
     robot = DexHandRobot(physics)
-    manipulable_object = CubeObject(physics)
+
+    object_config = {
+        "initial_pos_relative": [0.0, 0.0, 0.0],
+        "pos_randomization_range": {
+            "x": [-0.1, 0.1],
+            "y": [-0.02, 0.02],
+            "z": [-0.005, 0.005]
+        },
+        "name": "cube" ,          
+        "joint_name": "cube_joint" ,  
+        "geom_name": "cube_geom",  
+        "size": [0.03, 0.04, 0.02]
+    }
+    manipulable_object = CubeObject(physics, object_config)
     print("Robot and Object interfaces initialized.")
 
     # --- 3. Setup Observation and Reward Composers ---

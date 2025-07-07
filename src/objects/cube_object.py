@@ -1,8 +1,7 @@
 # src/objects/cube_object.py
 import numpy as np
 from dm_control import mujoco
-from src.objects.base_object import BaseObject # Relative import
-
+from src.objects.base_object import BaseObject
 class CubeObject(BaseObject):
     """Concrete implementation for a manipulable cube object."""
 
@@ -15,15 +14,15 @@ class CubeObject(BaseObject):
 
     def get_observation_data(self) -> np.ndarray:
         """Returns cube's position, orientation, linear and angular velocities."""
-        object_pos = self._physics.data.body_xpos[self.body_id]
-        object_quat = self._physics.data.body_xquat[self.body_id]
-        object_lin_vel = self._physics.data.body_xvelp[self.body_id]
-        object_ang_vel = self._physics.data.body_xvelr[self.body_id]
+        object_pos = self._physics.data.xpos[self._body_id]
+        object_quat = self._physics.data.xquat[self._body_id]
+        object_lin_vel = self._physics.data.object_velocity(self.body_id,'body')[0]
+        object_ang_vel = self._physics.data.object_velocity(self.body_id,'body')[1]
         return np.concatenate([object_pos, object_quat, object_lin_vel, object_ang_vel]).astype(np.float32)
 
     def reset_state(self):
         """Resets the cube's position to initial (with randomization) and velocity to zero."""
-        object_initial_qpos_idx = self._model.joint_qposadr[self.joint_id]
+        object_initial_qpos_idx = self._model.jnt_qposadr[self.joint_id]
 
         # Apply randomization to initial position
         random_offset_x = np.random.uniform(self._pos_randomization_range['x'][0], self._pos_randomization_range['x'][1])
@@ -38,5 +37,5 @@ class CubeObject(BaseObject):
         self._physics.data.qpos[object_initial_qpos_idx+3:object_initial_qpos_idx+7] = np.array([1.0, 0.0, 0.0, 0.0]) # WXYZ identity quaternion
 
         # Reset object's velocities (6 values for a free joint)
-        object_initial_qvel_idx = self._model.joint_dofadr[self.joint_id]
+        object_initial_qvel_idx = self._model.jnt_dofadr[self.joint_id]
         self._physics.data.qvel[object_initial_qvel_idx:object_initial_qvel_idx+6] = 0.0

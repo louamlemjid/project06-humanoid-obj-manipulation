@@ -1,4 +1,4 @@
-# src/objects/base_object.py
+#src/objects/base_object.py
 from abc import ABC, abstractmethod
 import numpy as np
 from dm_control import mujoco
@@ -10,8 +10,8 @@ class BaseObject(ABC):
         self._physics = physics
         self._model = physics.model
         self._object_config = object_config
-        self._body_id = self._model.body_name2id(object_config["name"])
-        self._joint_id = self._model.joint_name2id(object_config["joint_name"])
+        self._body_id = self._model.name2id('cube','body')
+        self._joint_id = self._model.name2id('cube_joint','joint')
 
     @property
     def physics(self) -> mujoco.Physics:

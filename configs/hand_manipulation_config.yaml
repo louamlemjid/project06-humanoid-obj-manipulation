@@ -5,9 +5,9 @@ env:
   episode_duration: 2.0 # seconds
 
 object:
-  name: "ball"           # Changed from "ball_body" to "ball"
-  joint_name: "ball"     # Changed from "ball_joint" to "ball" (default name for freejoint)
-  geom_name: "ball_geom"   # This already matches, no change needed
+  name: "cube"           # Changed from "ball_body" to "ball"
+  joint_name: "cube_joint"     # Changed from "ball_joint" to "ball" (default name for freejoint)
+  geom_name: "cube_geom"   # This already matches, no change needed
   size: [0.03, 0.04, 0.02] # Changed from "radius" to "size" and updated values for ellipsoid
   pos_randomization_range:
     x: [-0.02, 0.02]
