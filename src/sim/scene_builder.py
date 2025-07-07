@@ -1,39 +1,40 @@
 # src/sim/scene_builder.py
 
 from dm_control import mujoco
-import numpy as np
+import os
 
 class SceneBuilder:
     """
-    Responsible for building the complete MuJoCo scene from MJCF elements.
+    Responsible for building a complete MuJoCo scene directly 
+    from a given XML file.
     """
-    def __init__(self, hand_model_path: str, object_config: dict):
-        self.hand_model_path = hand_model_path
-        self.object_config = object_config
+    
+    @staticmethod
+    def build_from_xml(scene_xml_path: str) -> mujoco.Physics:
+        """
+        Loads and compiles a MuJoCo scene from a specified XML file.
 
-    def build(self) -> mujoco.Physics:
-        """Loads the hand model and attaches the manipulable object."""
-        # Load the existing Dex Hand scene
-        dex_hand_mjcf_root = mujoco.Physics.from_xml_path(self.hand_model_path)
+        This is a static method, so you can call it directly on the class
+        without creating an instance: `SceneBuilder.build_from_xml(...)`.
 
-        # Create an MJCF element for your manipulable object (e.g., a cube)
-        object_mjcf = mujoco.Physics.RootElement(model=self.object_config["name"])
-        cube_body = object_mjcf.worldbody.add(
-            'body',
-            name=self.object_config["name"],
-            pos=self.object_config["initial_pos_relative"]
-        )
-        cube_body.add('joint', name=self.object_config["joint_name"], type="free")
-        cube_body.add('geom',
-                      name=self.object_config["name"] + "_geom",
-                      type="box",
-                      size=self.object_config["geom_size"],
-                      mass=self.object_config["mass"],
-                      rgba="1 0 0 1")
+        Args:
+            scene_xml_path: The full path to the scene's .xml file.
 
-        # Attach the object to the existing Dex Hand scene's worldbody
-        dex_hand_mjcf_root.worldbody.attach(object_mjcf)
-
-        # Create the final physics object from the combined model
-        physics = mujoco.Physics.from_mjcf_model(dex_hand_mjcf_root)
+        Returns:
+            A compiled dm_control.mujoco.Physics instance.
+            
+        Raises:
+            FileNotFoundError: If the provided XML file path does not exist.
+        """
+        if not os.path.exists(scene_xml_path):
+            raise FileNotFoundError(
+                f"The specified scene file was not found: {scene_xml_path}"
+            )
+            
+        print(f"Loading scene from: {scene_xml_path}")
+        
+        # The core function to load a model from a complete XML file.
+        physics = mujoco.Physics.from_xml_path(scene_xml_path)
+        
+        print("Scene built successfully.")
         return physics
