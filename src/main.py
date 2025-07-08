@@ -76,12 +76,12 @@ def main():
         manipulable_object=manipulable_object,
         observation_builder=observation_builder,
         reward_composer=reward_composer,
-        env_config=config["env"]
+        env_config=object_config["env"]
     )
     print("Gym environment created.")
 
     # --- 5. Initialize and Manage the RL Agent ---
-    rl_manager = RLAgentManager(env, config["rl"])
+    rl_manager = RLAgentManager(env, object_config["rl"])
     print("RL Agent Manager initialized.")
 
     # --- Action: Train the agent ---
