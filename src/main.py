@@ -26,23 +26,47 @@ def main():
     robot = DexHandRobot(physics)
 
     object_config = {
-        "initial_pos_relative": [0.0, 0.0, 0.0],
-        "pos_randomization_range": {
-            "x": [-0.1, 0.1],
-            "y": [-0.02, 0.02],
-            "z": [-0.005, 0.005]
-        },
-        "name": "cube" ,          
-        "joint_name": "cube_joint" ,  
-        "geom_name": "cube_geom",  
-        "size": [0.03, 0.04, 0.02]
-    }
+    "initial_pos_relative": [0.0, 0.0, 0.0],
+    "pos_randomization_range": {
+        "x": [-0.1, 0.1],
+        "y": [-0.02, 0.02],
+    "z": [-0.005, 0.005]},
+    "name": "cube" ,
+  "joint_name": "cube_joint" ,
+  "geom_name": "cube_geom",
+  "size": [0.03, 0.04, 0.02],
+    "rewards":{
+            "object_height_factor": 100,
+                "target_height": 0.06,
+                "target_height_bonus": 500,
+                "drop_penalty": 200
+            },
+       "env":{
+           "hand_model_path": "models/dex_hand/scene.xml",
+           "control_timestep": 0.002,
+           "episode_duration": 2.0 # seconds
+       },
+    "rl":
+    {
+      "total_timesteps": 50000 ,# Keep low for initial test, increase to millions for actual training
+      "log_dir": "./sac_hand_manipulation_logs/",
+      "model_save_path": "./trained_models/hand_policy.zip",
+      "learning_rate": 0.0003,
+      "buffer_size": 10000,
+      "learning_starts": 100, # Start learning quickly for test
+      "train_freq": [1, "episode"],
+      "gradient_steps": 1,
+      "ent_coef": "auto",
+      "save_freq": 5000, # How often to save checkpoints during training}
+    }}
+    
     manipulable_object = CubeObject(physics, object_config)
     print("Robot and Object interfaces initialized.")
 
     # --- 3. Setup Observation and Reward Composers ---
     observation_builder = ObservationBuilder(robot, manipulable_object)
-    reward_composer = RewardComposer(physics, manipulable_object.body_id, config["rewards"])
+
+    reward_composer = RewardComposer(physics, manipulable_object.body_id, object_config["rewards"])
     print("Observation and Reward composers set up.")
 
     # --- 4. Create the Custom Gym Environment ---

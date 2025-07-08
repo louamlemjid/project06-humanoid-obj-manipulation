@@ -7,7 +7,7 @@ from dm_control import mujoco
 
 def object_height_reward(physics: mujoco.Physics, object_body_id: int, config: dict) -> float:
     """Rewards the agent based on the object's height."""
-    object_height = physics.data.body_xpos[object_body_id][2] # Z-coordinate
+    object_height = physics.data.xpos[object_body_id][2] # Z-coordinate
     reward = config.get("object_height_factor", 100) * (object_height - 0.05) # Assume table is at Z=0.05
     return float(reward)
 
