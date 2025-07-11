@@ -323,13 +323,16 @@
     <position name="lh_A_LFJ4" joint="lh_LFJ4" class="knuckle"/>
     <position name="lh_A_LFJ3" joint="lh_LFJ3" class="proximal"/>
     <position name="lh_A_LFJ0" tendon="lh_LFJ0" class="middle_distal"/>
-    <motor name="forearm_tx" body="lh_forearm" gear="1 0 0 0 0 0"/>
-  <motor name="forearm_ty" body="lh_forearm" gear="0 1 0 0 0 0"/>
-  <motor name="forearm_tz" body="lh_forearm" gear="0 0 1 0 0 0"/>
+    
+    <!-- Actuators for the 6-DoF freejoint of the forearm -->
+    <!-- Translational control -->
+    <motor name="forearm_tx" joint="lh_forearm_joint" gear="1 0 0 0 0 0" ctrlrange="-5 5" forcerange="-50 50"/>
+    <motor name="forearm_ty" joint="lh_forearm_joint" gear="0 1 0 0 0 0" ctrlrange="-5 5" forcerange="-50 50"/>
+    <motor name="forearm_tz" joint="lh_forearm_joint" gear="0 0 1 0 0 0" ctrlrange="-5 5" forcerange="-50 50"/>
 
-  <!-- Control rotation (quaternion-based) -->
-  <motor name="forearm_rx" body="lh_forearm" gear="0 0 0 1 0 0"/>
-  <motor name="forearm_ry" body="lh_forearm" gear="0 0 0 0 1 0"/>
-  <motor name="forearm_rz" body="lh_forearm" gear="0 0 0 0 0 1"/>
+    <!-- Rotational control (axis-angle) -->
+    <motor name="forearm_rx" joint="lh_forearm_joint" gear="0 0 0 1 0 0" ctrlrange="-2 2" forcerange="-20 20"/>
+    <motor name="forearm_ry" joint="lh_forearm_joint" gear="0 0 0 0 1 0" ctrlrange="-2 2" forcerange="-20 20"/>
+    <motor name="forearm_rz" joint="lh_forearm_joint" gear="0 0 0 0 0 1" ctrlrange="-2 2" forcerange="-20 20"/>
   </actuator>
 </mujoco>
