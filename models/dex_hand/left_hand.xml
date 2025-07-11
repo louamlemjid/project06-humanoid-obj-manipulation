@@ -323,5 +323,11 @@
     <position name="lh_A_LFJ4" joint="lh_LFJ4" class="knuckle"/>
     <position name="lh_A_LFJ3" joint="lh_LFJ3" class="proximal"/>
     <position name="lh_A_LFJ0" tendon="lh_LFJ0" class="middle_distal"/>
+    <motor name="lh_forearm_tx" joint="lh_forearm_joint" joint_index="0" ctrlrange="-1 1"/>
+    <motor name="lh_forearm_ty" joint="lh_forearm_joint" joint_index="1" ctrlrange="-1 1"/>
+    <motor name="lh_forearm_tz" joint="lh_forearm_joint" joint_index="2" ctrlrange="-1 1"/>
+    <motor name="lh_forearm_rx" joint="lh_forearm_joint" joint_index="3" ctrlrange="-1 1"/>
+    <motor name="lh_forearm_ry" joint="lh_forearm_joint" joint_index="4" ctrlrange="-1 1"/>
+    <motor name="lh_forearm_rz" joint="lh_forearm_joint" joint_index="5" ctrlrange="-1 1"/>
   </actuator>
 </mujoco>
