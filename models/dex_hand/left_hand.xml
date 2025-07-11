@@ -94,7 +94,16 @@
   </asset>
 
   <worldbody>
-  <geom type="frame" size="0.1" rgba="1 1 1 1"/>
+  <body name="world_axes" pos="0 0 0">
+    <!-- X axis: Red -->
+    <geom type="capsule" size="0.01 0.2" fromto="0 0 0 0.2 0 0" rgba="1 0 0 1"/>
+
+    <!-- Y axis: Green -->
+    <geom type="capsule" size="0.01 0.2" fromto="0 0 0 0 0.2 0" rgba="0 1 0 1"/>
+
+    <!-- Z axis: Blue -->
+    <geom type="capsule" size="0.01 0.2" fromto="0 0 0 0 0 0.2" rgba="0 0 1 1"/>
+  </body>
     <body name="lh_forearm" childclass="left_hand" quat="0 1 0 1">
       <freejoint name="lh_forearm_joint"/>
       <inertial mass="3" pos="0 0 0.09" diaginertia="0.0138 0.0138 0.00744"/>
