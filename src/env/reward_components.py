@@ -5,25 +5,28 @@ from dm_control import mujoco
 # Define individual reward functions here.
 # Each function takes physics, relevant object_body_id, and config.
 
-def object_height_reward(physics: mujoco.Physics, object_body_id: int, config: dict) -> float:
-    """Rewards the agent based on the object's height."""
-    object_height = physics.data.xpos[object_body_id][2] # Z-coordinate
-    reward = config.get("object_height_factor", 100) * (object_height - 0.05) # Assume table is at Z=0.05
-    return float(reward)
+# def object_height_reward(physics: mujoco.Physics, object_body_id: int, config: dict) -> float:
+#     """Rewards the agent for lifting the object to a certain height."""
+#     object_height = physics.data.xpos[object_body_id][2]
+#     target_height = config.get("target_height", 0.15)
+#     
+#     # Reward is proportional to how close the object is to the target height
+#     reward = max(0, 1 - abs(object_height - target_height) / target_height)
+#     return float(reward * config.get("height_reward_factor", 10))
 
-def target_height_bonus_reward(physics: mujoco.Physics, object_body_id: int, config: dict) -> float:
-    """Gives a bonus if the object reaches a target height."""
-    object_height = physics.data.xpos[object_body_id][2]
-    if object_height >= config.get("target_height", 0.05):
-        return float(config.get("target_height_bonus", 500))
-    return 0.0
+# def target_height_reward(physics: mujoco.Physics, object_body_id: int, config: dict) -> float:
+#     """Gives a sparse reward when the object reaches the target height."""
+#     object_height = physics.data.xpos[object_body_id][2]
+#     if object_height >= config.get("target_height", 0.15):
+#         return float(config.get("target_achieved_bonus", 50))
+#     return 0.0
 
-def drop_penalty_reward(physics: mujoco.Physics, object_body_id: int, config: dict) -> float:
-    """Penalizes the agent if the object falls too low."""
-    object_height = physics.data.xpos[object_body_id][2]
-    if object_height < config.get("drop_threshold", 0.02): # Below a very low threshold
-        return float(-config.get("drop_penalty", 200))
-    return 0.0
+# def drop_penalty_reward(physics: mujoco.Physics, object_body_id: int, config: dict) -> float:
+#     """Penalizes the agent if the object falls too low."""
+#     object_height = physics.data.xpos[object_body_id][2]
+#     if object_height < config.get("drop_threshold", 0.02): # Below a very low threshold
+#         return float(-config.get("drop_penalty", 200))
+#     return 0.0
 
 def hand_movement_reward(physics: mujoco.Physics, hand_joint_ids: list[int], config: dict) -> float:
     """Rewards the agent for moving the hand's joints to encourage exploration."""
@@ -41,20 +44,36 @@ def hand_movement_reward(physics: mujoco.Physics, hand_joint_ids: list[int], con
 
     return float(reward)
 
-def hand_to_object_distance_reward(physics: mujoco.Physics, hand_palm_body_id: int, object_body_id: int, config: dict) -> float:
-    """Rewards the agent for minimizing the distance between the hand palm and the object."""
-    # Get the position of the hand palm and the object
-    hand_palm_pos = physics.data.xpos[hand_palm_body_id]
+def finger_proximity_reward(
+    physics: mujoco.Physics, 
+    finger_body_ids: list[int], 
+    object_body_id: int, 
+    config: dict
+) -> float:
+    """
+    Rewards the agent for minimizing the distance between multiple finger parts and the object.
+    This encourages the hand to shape itself around the object for grasping.
+    """
+    # Get the position of the object
     object_pos = physics.data.xpos[object_body_id]
-
-    # Calculate the Euclidean distance
-    distance = np.linalg.norm(hand_palm_pos - object_pos)
+    
+    distances = []
+    for finger_id in finger_body_ids:
+        # Get the position of the finger part
+        finger_pos = physics.data.xpos[finger_id]
+        
+        # Calculate the Euclidean distance
+        distance = np.linalg.norm(finger_pos - object_pos)
+        distances.append(distance)
+        
+    # Calculate the average distance from the finger parts to the object
+    avg_distance = np.mean(distances)
 
     # Use an exponential decay function for the reward.
     # The reward is close to the factor when distance is 0, and decays as distance increases.
-    distance_scale = config.get("distance_scale", 10.0) # Controls how fast the reward decays
-    reward_factor = config.get("distance_reward_factor", 1.0) # Max reward
+    distance_scale = config.get("distance_scale", 20.0)  # Sharper decay for proximity
+    reward_factor = config.get("distance_reward_factor", 5.0)  # Higher reward for close proximity
     
-    reward = reward_factor * np.exp(-distance_scale * distance)
+    reward = reward_factor * np.exp(-distance_scale * avg_distance)
 
     return float(reward)
