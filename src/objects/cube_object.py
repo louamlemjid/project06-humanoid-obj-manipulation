@@ -29,7 +29,7 @@ class CubeObject(BaseObject):
         random_offset_y = np.random.uniform(self._pos_randomization_range['y'][0], self._pos_randomization_range['y'][1])
         random_offset_z = np.random.uniform(self._pos_randomization_range['z'][0], self._pos_randomization_range['z'][1])
 
-        new_pos = self._initial_pos_relative + np.array([random_offset_x, random_offset_y, random_offset_z])
+        new_pos = self._initial_pos_relative #+ np.array([random_offset_x, random_offset_y, random_offset_z])
 
         # Set the object's position (first 3 values of its free joint qpos)
         self._physics.data.qpos[object_initial_qpos_idx:object_initial_qpos_idx+3] = new_pos

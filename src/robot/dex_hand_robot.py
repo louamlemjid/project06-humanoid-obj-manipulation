@@ -11,10 +11,10 @@ class DexHandRobot(BaseRobot):
         # Identify specific joint and actuator IDs for the Dex Hand
         # Filter for names starting with 'lh_' (left hand) and exclude wrist for finger-only control
         self._controllable_joint_ids = [5,4,3,2,18,17,16,15,14,9,8,
-            7,6,13,12,11,10,23,22,21,20,19]
+            7,6,13,12,11,10,23,22,21,20,19,0,1]
         
         self._actuator_ids = [9, 8, 7, 19, 18, 17, 16, 12, 11,
-                               10, 15, 14, 13, 6, 5, 4, 3, 2]
+                               10, 15, 14, 13, 6, 5, 4, 3, 2,1,0]
 
         # Store initial qpos for the Dex Hand for reset (only for controllable joints)
         self._initial_qpos = self.physics.data.qpos[self.controllable_joint_ids].copy()

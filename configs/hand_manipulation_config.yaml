@@ -13,6 +13,7 @@ object:
     x: [-0.02, 0.02]
     y: [-0.02, 0.02]
     z: [-0.005, 0.005]
+  initial_pos_relative: [0.3, 0.0, 0.1] # Changed from [0.3, 0.0, 0.0] to [0.3, 0.0, 0.1]
 
 rewards:
   object_height_factor: 100

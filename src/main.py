@@ -26,16 +26,16 @@ def main():
     robot = DexHandRobot(physics)
 
     object_config = {
-    "initial_pos_relative": [0.0, 0.0, 0.0],
-    "pos_randomization_range": {
-        "x": [-0.1, 0.1],
-        "y": [-0.02, 0.02],
-    "z": [-0.005, 0.005]},
-    "name": "cube" ,
-  "joint_name": "cube_joint" ,
-  "geom_name": "cube_geom",
-  "size": [0.03, 0.04, 0.02],
-    "rewards":{
+            "initial_pos_relative": [0.3, 0.0, 0.1],
+            "pos_randomization_range": {
+                "x": [-0.1, 0.1],
+                "y": [-0.02, 0.02],
+            "z": [-0.005, 0.005]},
+            "name": "cube" ,
+        "joint_name": "cube_joint" ,
+        "geom_name": "cube_geom",
+        "size": [0.03, 0.04, 0.02],
+            "rewards":{
             "object_height_factor": 100,
                 "target_height": 0.06,
                 "target_height_bonus": 500,
