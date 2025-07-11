@@ -323,13 +323,13 @@
     <position name="lh_A_LFJ4" joint="lh_LFJ4" class="knuckle"/>
     <position name="lh_A_LFJ3" joint="lh_LFJ3" class="proximal"/>
     <position name="lh_A_LFJ0" tendon="lh_LFJ0" class="middle_distal"/>
-    <motor name="forearm_tx"  gear="1 0 0 0 0 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
-<motor name="forearm_ty"  gear="0 1 0 0 0 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
-<motor name="forearm_tz"  gear="0 0 1 0 0 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
+    <motor name="forearm_tx" body="lh_forearm" gear="1 0 0 0 0 0"/>
+  <motor name="forearm_ty" body="lh_forearm" gear="0 1 0 0 0 0"/>
+  <motor name="forearm_tz" body="lh_forearm" gear="0 0 1 0 0 0"/>
 
-<motor name="forearm_rx"  gear="0 0 0 1 0 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
-<motor name="forearm_ry"  gear="0 0 0 0 1 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
-<motor name="forearm_rz"  gear="0 0 0 0 0 1"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
-
+  <!-- Control rotation (quaternion-based) -->
+  <motor name="forearm_rx" body="lh_forearm" gear="0 0 0 1 0 0"/>
+  <motor name="forearm_ry" body="lh_forearm" gear="0 0 0 0 1 0"/>
+  <motor name="forearm_rz" body="lh_forearm" gear="0 0 0 0 0 1"/>
   </actuator>
 </mujoco>
