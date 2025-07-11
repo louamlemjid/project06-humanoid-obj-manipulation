@@ -323,25 +323,13 @@
     <position name="lh_A_LFJ4" joint="lh_LFJ4" class="knuckle"/>
     <position name="lh_A_LFJ3" joint="lh_LFJ3" class="proximal"/>
     <position name="lh_A_LFJ0" tendon="lh_LFJ0" class="middle_distal"/>
-    <general name="forearm_tx" dyntype="integrator" biastype="affine"
-         gainprm="1 0 0" biasprm="0 0 0" ctrlrange="-1 1"
-         gear="1 0 0 0 0 0"/>
-<general name="forearm_ty" dyntype="integrator" biastype="affine"
-         gainprm="1 0 0" biasprm="0 0 0" ctrlrange="-1 1"
-         gear="0 1 0 0 0 0"/>
-<general name="forearm_tz" dyntype="integrator" biastype="affine"
-         gainprm="1 0 0" biasprm="0 0 0" ctrlrange="-1 1"
-         gear="0 0 1 0 0 0"/>
+    <motor name="forearm_tx"  gear="1 0 0 0 0 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
+<motor name="forearm_ty"  gear="0 1 0 0 0 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
+<motor name="forearm_tz"  gear="0 0 1 0 0 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
 
-<general name="forearm_rx" dyntype="integrator" biastype="affine"
-         gainprm="1 0 0" biasprm="0 0 0" ctrlrange="-1 1"
-         gear="0 0 0 1 0 0"/>
-<general name="forearm_ry" dyntype="integrator" biastype="affine"
-         gainprm="1 0 0" biasprm="0 0 0" ctrlrange="-1 1"
-         gear="0 0 0 0 1 0"/>
-<general name="forearm_rz" dyntype="integrator" biastype="affine"
-         gainprm="1 0 0" biasprm="0 0 0" ctrlrange="-1 1"
-         gear="0 0 0 0 0 1"/>
+<motor name="forearm_rx"  gear="0 0 0 1 0 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
+<motor name="forearm_ry"  gear="0 0 0 0 1 0"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
+<motor name="forearm_rz"  gear="0 0 0 0 0 1"  biastype="affine" dyntype="integrator" ctrlrange="-1 1"  gainprm="1 0 0" biasprm="0 0 0"  body="lh_forearm"/>
 
   </actuator>
 </mujoco>
