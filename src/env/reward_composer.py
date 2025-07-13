@@ -1,13 +1,12 @@
 # src/env/reward_composer.py
-from typing import Callable, List
+from typing import List
 from dm_control import mujoco
 from src.env.reward_components import (
-    object_height_reward,
-    target_height_bonus_reward,
-    drop_penalty_reward,
     hand_movement_reward,
-    finger_proximity_reward
-) # Import individual components
+    finger_proximity_reward,
+    hand_z_position_reward,
+    object_y_position_reward
+) # Import all active components
 
 class RewardComposer:
     """
@@ -19,27 +18,22 @@ class RewardComposer:
         object_body_id: int, 
         hand_joint_ids: list[int],
         finger_body_ids: list[int],
+        hand_palm_body_id: int,
         reward_config: dict
     ):
         self._physics = physics
         self._object_body_id = object_body_id
         self._hand_joint_ids = hand_joint_ids
         self._finger_body_ids = finger_body_ids
+        self._hand_palm_body_id = hand_palm_body_id
         self._reward_config = reward_config
-
-        # Define the list of active reward functions to use
-        self._reward_functions: List[Callable[[mujoco.Physics, int, dict], float]] = [
-            object_height_reward,
-            target_height_bonus_reward,
-            drop_penalty_reward,
-            hand_movement_reward,
-            finger_proximity_reward,
-        ]
 
         # Store reward functions and their specific arguments
         self._reward_functions = [
             (hand_movement_reward, {'hand_joint_ids': self._hand_joint_ids}),
-            (finger_proximity_reward, {'finger_body_ids': self._finger_body_ids, 'object_body_id': self._object_body_id})
+            (finger_proximity_reward, {'finger_body_ids': self._finger_body_ids, 'object_body_id': self._object_body_id}),
+            (hand_z_position_reward, {'hand_palm_body_id': self._hand_palm_body_id}),
+            (object_y_position_reward, {'object_body_id': self._object_body_id})
         ]
 
     def get_total_reward(self) -> float:

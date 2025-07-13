@@ -2,7 +2,7 @@
 env:
   hand_model_path: "models/dex_hand/scene.xml"
   control_timestep: 0.002
-  episode_duration: 2.0 # seconds
+  episode_duration: 8.0 # seconds
 
 object:
   name: "cube"           # Changed from "ball_body" to "ball"
@@ -16,10 +16,21 @@ object:
   initial_pos_relative: [0.3, 0.0, 0.1] # Changed from [0.3, 0.0, 0.0] to [0.3, 0.0, 0.1]
 
 rewards:
-  object_height_factor: 100
-  target_height: 0.06
-  target_height_bonus: 500
-  drop_penalty: 200
+  # Parameters for finger_proximity_reward
+  distance_scale: 25.0
+  distance_reward_factor: 8.0
+
+  # Parameters for hand_z_position_reward
+  hand_target_z: 0.03
+  hand_z_reward_factor: 200.0
+
+  # Parameters for object_y_position_reward
+  target_y_position: 0.2
+  y_pos_distance_scale: 20.0
+  y_pos_reward_factor: 15.0
+
+  # Parameters for hand_movement_reward (exploration)
+  hand_joint_velocity_scaling: 0.05
 
 rl:
   total_timesteps: 50000 # Keep low for initial test, increase to millions for actual training

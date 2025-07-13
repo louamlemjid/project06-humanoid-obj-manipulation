@@ -28,6 +28,27 @@ from dm_control import mujoco
 #         return float(-config.get("drop_penalty", 200))
 #     return 0.0
 
+def hand_z_position_reward(
+    physics: mujoco.Physics, 
+    hand_palm_body_id: int, 
+    config: dict
+) -> float:
+    """
+    Rewards the agent for maintaining the hand's height above a certain threshold.
+    This can be used to prevent the hand from dropping too low.
+    """
+    # Get the z-position of the hand's palm
+    hand_z_pos = physics.data.xpos[hand_palm_body_id][2]
+    
+    # Get configuration parameters
+    target_height = config.get("hand_target_z", 0.05)
+    reward_factor = config.get("hand_z_reward_factor", 300.0)
+    
+    # Calculate the reward
+    # The reward is positive if the hand is above the target height
+    reward = (hand_z_pos - target_height) * reward_factor
+    
+    return float(reward)
 def hand_movement_reward(physics: mujoco.Physics, hand_joint_ids: list[int], config: dict) -> float:
     """Rewards the agent for moving the hand's joints to encourage exploration."""
     # Get velocities of the specified hand joints
@@ -75,5 +96,31 @@ def finger_proximity_reward(
     reward_factor = config.get("distance_reward_factor", 5.0)  # Higher reward for close proximity
     
     reward = reward_factor * np.exp(-distance_scale * avg_distance)
+
+    return float(reward)
+
+def object_y_position_reward(
+    physics: mujoco.Physics,
+    object_body_id: int,
+    config: dict
+) -> float:
+    """
+    Rewards the agent for moving the object to a target y-position.
+    This encourages the agent to not only lift the object but also move it to a specific location.
+    """
+    # Get the object's current y-position
+    object_y_pos = physics.data.xpos[object_body_id][1]
+
+    # Get configuration parameters from the dictionary
+    target_y = config.get("target_y_position", 0.2)
+    distance_scale = config.get("y_pos_distance_scale", 15.0)
+    reward_factor = config.get("y_pos_reward_factor", 10.0)
+
+    # Calculate the absolute difference in the y-position
+    y_distance = abs(object_y_pos - target_y)
+
+    # Use an exponential decay function for the reward.
+    # The reward is highest when the object is at the target y-position.
+    reward = reward_factor * np.exp(-distance_scale * y_distance)
 
     return float(reward)
