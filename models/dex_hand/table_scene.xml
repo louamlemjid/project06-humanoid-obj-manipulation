@@ -6,9 +6,9 @@
   <include file="left_hand.xml"/>
   
   <!-- Include ball object -->
-  <include file="../object_manipulation/ball.xml"/>
+  <include file="../object_manipulation/cube.xml"/>
 
-  <include file="../static_object/longtable.xml"/>
+  <include file="longtable.xml"/>
   
   <!-- Global visual settings -->
   <visual>
