@@ -2,7 +2,7 @@
     <compiler meshdir="assets" texturedir="assets"/>
     <asset>
         <!--<texture name="texmarble" type="cube" file="marble.png"/>-->
-        <material name="matmarble" texture="texmarble" rgba=".7 .7 .7 1"/>
+        <!--<material name="matmarble" texture="texmarble" rgba=".7 .7 .7 1"/>-->
         <mesh name="longtable_mesh" file="longtable.stl" />
     </asset>
 
