@@ -8,7 +8,7 @@
   <!-- Include ball object -->
   <include file="../object_manipulation/cube.xml"/>
 
-  <include file="longtable.xml"/>
+  <include file="table.xml"/>
   
   <!-- Global visual settings -->
   <visual>
