@@ -3,10 +3,7 @@
   <statistic extent="0.3" center="0.3 0 0"/>
   
   <!-- Include left hand model -->
-  <default class="left_hand">
-    <mesh scale="0.05 0.05 0.05"/> <!-- scaled-down visuals -->
-  </default>
-  <include file="left_hand.xml" />
+  <include file="left_hand.xml"/>
   
   <!-- Include ball object -->
   <include file="../object_manipulation/cube.xml"/>
@@ -33,5 +30,6 @@
 
     <!-- Ground -->
     <geom name="floor" pos="0 0 -0.1" size="0 0 0.05" type="plane" material="groundplane"/>
+
   </worldbody>
 </mujoco>
