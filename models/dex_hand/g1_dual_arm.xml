@@ -126,21 +126,23 @@
   </worldbody>
 
   <actuator>
-    <motor name="left_shoulder_pitch_joint" joint="left_shoulder_pitch_joint"/>
-    <motor name="left_shoulder_roll_joint" joint="left_shoulder_roll_joint"/>
-    <motor name="left_shoulder_yaw_joint" joint="left_shoulder_yaw_joint"/>
-    <motor name="left_elbow_joint" joint="left_elbow_joint"/>
-    <motor name="left_wrist_roll_joint" joint="left_wrist_roll_joint"/>
-    <motor name="left_wrist_pitch_joint" joint="left_wrist_pitch_joint"/>
-    <motor name="left_wrist_yaw_joint" joint="left_wrist_yaw_joint"/>
-    <motor name="right_shoulder_pitch_joint" joint="right_shoulder_pitch_joint"/>
-    <motor name="right_shoulder_roll_joint" joint="right_shoulder_roll_joint"/>
-    <motor name="right_shoulder_yaw_joint" joint="right_shoulder_yaw_joint"/>
-    <motor name="right_elbow_joint" joint="right_elbow_joint"/>
-    <motor name="right_wrist_roll_joint" joint="right_wrist_roll_joint"/>
-    <motor name="right_wrist_pitch_joint" joint="right_wrist_pitch_joint"/>
-    <motor name="right_wrist_yaw_joint" joint="right_wrist_yaw_joint"/>
-  </actuator>
+    <motor name="left_shoulder_pitch_joint" joint="left_shoulder_pitch_joint" gear="200"/>
+    <motor name="left_shoulder_roll_joint" joint="left_shoulder_roll_joint" gear="200"/>
+    <motor name="left_shoulder_yaw_joint" joint="left_shoulder_yaw_joint" gear="200"/>
+    <motor name="left_elbow_joint" joint="left_elbow_joint" gear="150"/>
+    <motor name="left_wrist_roll_joint" joint="left_wrist_roll_joint" gear="100"/>
+    <motor name="left_wrist_pitch_joint" joint="left_wrist_pitch_joint" gear="100"/>
+    <motor name="left_wrist_yaw_joint" joint="left_wrist_yaw_joint" gear="100"/>
+    
+    <motor name="right_shoulder_pitch_joint" joint="right_shoulder_pitch_joint" gear="200"/>
+    <motor name="right_shoulder_roll_joint" joint="right_shoulder_roll_joint" gear="200"/>
+    <motor name="right_shoulder_yaw_joint" joint="right_shoulder_yaw_joint" gear="200"/>
+    <motor name="right_elbow_joint" joint="right_elbow_joint" gear="150"/>
+    <motor name="right_wrist_roll_joint" joint="right_wrist_roll_joint" gear="100"/>
+    <motor name="right_wrist_pitch_joint" joint="right_wrist_pitch_joint" gear="100"/>
+    <motor name="right_wrist_yaw_joint" joint="right_wrist_yaw_joint" gear="100"/>
+</actuator>
+
 
 
   <!-- setup scene -->
