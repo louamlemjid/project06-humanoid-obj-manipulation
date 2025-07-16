@@ -1,6 +1,6 @@
 <mujoco model="g1_dual_arm">
   <compiler angle="radian" meshdir="assets"/>
-
+<include file="../object_manipulation/cube.xml"/>
   <asset>
     <mesh name="waist_yaw_link" file="waist_yaw_link.STL"/>
     <mesh name="waist_roll_link" file="waist_roll_link.STL"/>
