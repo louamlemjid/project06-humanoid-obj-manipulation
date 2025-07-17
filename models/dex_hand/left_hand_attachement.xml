@@ -1,10 +1,5 @@
 <mujoco model="left_shadow_hand">
   
-
-
-  
-
-  <worldbody>
   
     <body name="lh_forearm" childclass="left_hand" quat="1 0 0 0" pos="0 0 0">
      
@@ -178,7 +173,7 @@
         </body>
       </body>
     </body>
-  </worldbody>
+
 
   <!--<contact>
     <exclude body1="lh_wrist" body2="lh_forearm"/>
