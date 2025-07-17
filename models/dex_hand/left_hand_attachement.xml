@@ -2,18 +2,8 @@
   
   
     
-      <body name="lh_wrist" pos="0.01 0 0.21301" quat="1 0 0 1" childclass="left_hand">
-        <inertial mass="0.1" pos="0 0 0.029" quat="0.5 0.5 0.5 0.5" diaginertia="6.4e-05 4.38e-05 3.5e-05"/>
-        <joint class="wrist_y" name="lh_WRJ2"/>
-        <geom class="plastic_visual" mesh="wrist" material="metallic"/>
-        <geom size="0.0135 0.015" quat="0.499998 0.5 0.5 -0.500002" type="cylinder" class="plastic_collision"/>
-        <geom size="0.011 0.005" pos="0.026 0 0.034" quat="1 0 1 0" type="cylinder" class="plastic_collision"/>
-        <geom size="0.011 0.005" pos="-0.031 0 0.034" quat="1 0 1 0" type="cylinder" class="plastic_collision"/>
-        <geom size="0.0135 0.009 0.005" pos="0.021 0 0.011" quat="-0.923879 0 0.382684 0" type="box"
-          class="plastic_collision"/>
-        <geom size="0.0135 0.009 0.005" pos="-0.026 0 0.01" quat="-0.923879 0 -0.382684 0" type="box"
-          class="plastic_collision"/>
-        <body name="lh_palm" pos="0 0 0.034">
+      
+        <body name="lh_palm" pos="0 0 0.034" childclass="left_hand">
           <inertial mass="0.3" pos="0 0 0.035" quat="1 0 0 1" diaginertia="0.0005287 0.0003581 0.000191"/>
           <joint class="wrist_x" name="lh_WRJ1"/>
           <geom class="plastic_visual" mesh="palm"/>
@@ -164,7 +154,7 @@
             </body>
           </body>
         </body>
-      </body>
+      
     
 
 
