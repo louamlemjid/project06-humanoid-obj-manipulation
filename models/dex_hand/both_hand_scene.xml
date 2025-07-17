@@ -56,6 +56,14 @@
       <joint axis="1 0 0" damping="0.05" armature="0.0002" frictionloss="0.01"/>
       <position forcerange="-1 1"/>
 
+      <default class="wrist">
+        
+        <default class="wrist_x">
+          <joint range="-0.698132 0.488692"/>
+          <position kp="8" ctrlrange="-0.698132 0.488692" forcerange="-5 5"/>
+        </default>
+      </default>
+
       <default class="thumb">
         <default class="thbase">
           <joint axis="0 0 1" range="-1.0472 1.0472"/>
@@ -209,7 +217,6 @@
     </body>
   </worldbody>
 <contact>
-    
     <exclude body1="lh_thproximal" body2="lh_thmiddle"/>
   </contact>
 
@@ -250,7 +257,8 @@
     <position name="right_A_wrist_pitch_joint"    joint="right_wrist_pitch_joint"    class="arm_joint"/>
     <position name="right_A_wrist_yaw_joint"      joint="right_wrist_yaw_joint"      class="arm_joint"/>
 
-
+    
+    <position name="lh_A_WRJ1" joint="lh_WRJ1" class="wrist_x"/>
     <position name="lh_A_THJ5" joint="lh_THJ5" class="thbase"/>
     <position name="lh_A_THJ4" joint="lh_THJ4" class="thproximal"/>
     <position name="lh_A_THJ3" joint="lh_THJ3" class="thhub"/>
