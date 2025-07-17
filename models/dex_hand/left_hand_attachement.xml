@@ -1,7 +1,6 @@
 <mujoco model="left_shadow_hand">
   
 
-  <option cone="elliptic" impratio="10"/>
 
   <default >
     <default class="left_hand">
