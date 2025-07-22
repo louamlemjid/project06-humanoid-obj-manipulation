@@ -240,13 +240,24 @@
   </tendon>
   <actuator>
     <!-- Left Arm -->
-    <position name="left_A_shoulder_pitch_joint" joint="left_shoulder_pitch_joint" class="arm_joint"/>
-    <position name="left_A_shoulder_roll_joint"  joint="left_shoulder_roll_joint"  class="arm_joint"/>
-    <position name="left_A_shoulder_yaw_joint"   joint="left_shoulder_yaw_joint"   class="arm_joint"/>
-    <position name="left_A_elbow_joint"          joint="left_elbow_joint"          class="arm_joint"/>
-    <position name="left_A_wrist_roll_joint"     joint="left_wrist_roll_joint"     class="arm_joint"/>
-    <position name="left_A_wrist_pitch_joint"    joint="left_wrist_pitch_joint"    class="arm_joint"/>
-    <position name="left_A_wrist_yaw_joint"      joint="left_wrist_yaw_joint"      class="arm_joint"/>
+    <position name="left_A_shoulder_pitch_joint" joint="left_shoulder_pitch_joint"
+          class="arm_joint" ctrlrange="-4 4" forcerange="-100 100"/>
+<position name="left_A_shoulder_roll_joint" joint="left_shoulder_roll_joint"
+          class="arm_joint" ctrlrange="-4 4" forcerange="-100 100"/>
+<position name="left_A_shoulder_yaw_joint" joint="left_shoulder_yaw_joint"
+          class="arm_joint" ctrlrange="-3 3" forcerange="-80 80"/>
+
+<!-- Elbow actuators (medium strength) -->
+<position name="left_A_elbow_joint" joint="left_elbow_joint"
+          class="arm_joint" ctrlrange="-2.5 2.5" forcerange="-60 60"/>
+
+<!-- Wrist actuators (weaker) -->
+<position name="left_A_wrist_roll_joint" joint="left_wrist_roll_joint"
+          class="arm_joint" ctrlrange="-1.5 1.5" forcerange="-30 30"/>
+<position name="left_A_wrist_pitch_joint" joint="left_wrist_pitch_joint"
+          class="arm_joint" ctrlrange="-1.5 1.5" forcerange="-30 30"/>
+<position name="left_A_wrist_yaw_joint" joint="left_wrist_yaw_joint"
+          class="arm_joint" ctrlrange="-1.5 1.5" forcerange="-30 30"/>
 
     <!-- Right Arm -->
     <position name="right_A_shoulder_pitch_joint" joint="right_shoulder_pitch_joint" class="arm_joint"/>
