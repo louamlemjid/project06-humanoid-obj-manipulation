@@ -249,7 +249,7 @@
 
 <!-- Elbow actuators (medium strength) -->
 <position name="left_A_elbow_joint" joint="left_elbow_joint"
-          class="arm_joint" ctrlrange="-2.5 2.5" forcerange="-60 60"/>
+          class="arm_joint" ctrlrange="-2 2" forcerange="-60 60"/>
 
 <!-- Wrist actuators (weaker) -->
 <position name="left_A_wrist_roll_joint" joint="left_wrist_roll_joint"
