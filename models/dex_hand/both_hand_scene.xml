@@ -244,13 +244,13 @@
     <motor name="left_wrist_yaw_joint" joint="left_wrist_yaw_joint"/>
 
     <!-- Right Arm -->
-    <position name="right_A_shoulder_pitch_joint" joint="right_shoulder_pitch_joint" class="arm_joint"/>
-    <position name="right_A_shoulder_roll_joint"  joint="right_shoulder_roll_joint"  class="arm_joint"/>
-    <position name="right_A_shoulder_yaw_joint"   joint="right_shoulder_yaw_joint"   class="arm_joint"/>
-    <position name="right_A_elbow_joint"          joint="right_elbow_joint"          class="arm_joint"/>
-    <position name="right_A_wrist_roll_joint"     joint="right_wrist_roll_joint"     class="arm_joint"/>
-    <position name="right_A_wrist_pitch_joint"    joint="right_wrist_pitch_joint"    class="arm_joint"/>
-    <position name="right_A_wrist_yaw_joint"      joint="right_wrist_yaw_joint"      class="arm_joint"/>
+    <position name="right_A_shoulder_pitch_joint" joint="right_shoulder_pitch_joint" />
+    <position name="right_A_shoulder_roll_joint"  joint="right_shoulder_roll_joint"  />
+    <position name="right_A_shoulder_yaw_joint"   joint="right_shoulder_yaw_joint"   />
+    <position name="right_A_elbow_joint"          joint="right_elbow_joint"          />
+    <position name="right_A_wrist_roll_joint"     joint="right_wrist_roll_joint"     />
+    <position name="right_A_wrist_pitch_joint"    joint="right_wrist_pitch_joint"    />
+    <position name="right_A_wrist_yaw_joint"      joint="right_wrist_yaw_joint"      />
 
     
     <position name="lh_A_WRJ1" joint="lh_WRJ1" class="wrist_x"/>
