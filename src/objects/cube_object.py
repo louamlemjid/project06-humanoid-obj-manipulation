@@ -15,10 +15,11 @@ class CubeObject(BaseObject):
     def get_observation_data(self) -> np.ndarray:
         """Returns cube's position, orientation, linear and angular velocities."""
         object_pos = self._physics.data.xpos[self._body_id]
-        object_quat = self._physics.data.xquat[self._body_id]
-        object_lin_vel = self._physics.data.object_velocity(self.body_id,'body')[0]
-        object_ang_vel = self._physics.data.object_velocity(self.body_id,'body')[1]
-        return np.concatenate([object_pos, object_quat, object_lin_vel, object_ang_vel]).astype(np.float32)
+        #object_quat = self._physics.data.xquat[self._body_id]
+        #object_lin_vel = self._physics.data.object_velocity(self.body_id,'body')[0]
+        #object_ang_vel = self._physics.data.object_velocity(self.body_id,'body')[1]
+        #return np.concatenate([object_pos, object_quat, object_lin_vel, object_ang_vel]).astype(np.float32)
+        return object_pos.astype(np.float32)
 
     def reset_state(self):
         """Resets the cube's position to initial (with randomization) and velocity to zero."""

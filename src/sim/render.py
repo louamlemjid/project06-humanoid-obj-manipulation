@@ -1,22 +1,15 @@
-#@title Other imports and helper functions
-from dm_control import mujoco
+#@title Imports and Helper Functions
 
-from dm_control.mujoco.wrapper.mjbindings import enums
 # General
-import copy
-import os
-import time
-import itertools
-from IPython.display import clear_output
 import numpy as np
-
-# Graphics-related
+import os
+from IPython.display import HTML
 import matplotlib
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
-from IPython.display import HTML
-import PIL.Image
-# Internal loading of video libraries.
+
+# Stable Baselines3 for SAC
+from stable_baselines3 import SAC
 
 # Use svg backend for figure rendering
 %config InlineBackend.figure_format = 'svg'
@@ -34,36 +27,58 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
 # Inline video helper function
-if os.environ.get('COLAB_NOTEBOOK_TEST', False):
-  # We skip video generation during tests, as it is quite expensive.
-  display_video = lambda *args, **kwargs: None
-else:
-  def display_video(frames, framerate=30):
+def display_video(frames, framerate=30):
     height, width, _ = frames[0].shape
     dpi = 70
-# Access to enums and MuJoCo library functions.
     orig_backend = matplotlib.get_backend()
-    matplotlib.use('Agg')  # Switch to headless 'Agg' to inhibit figure rendering.
+    matplotlib.use('Agg')  # Switch to headless 'Agg' to inhibit figure rendering
     fig, ax = plt.subplots(1, 1, figsize=(width / dpi, height / dpi), dpi=dpi)
-    matplotlib.use(orig_backend)  # Switch back to the original backend.
+    matplotlib.use(orig_backend)  # Switch back to the original backend
     ax.set_axis_off()
     ax.set_aspect('equal')
     ax.set_position([0, 0, 1, 1])
     im = ax.imshow(frames[0])
     def update(frame):
-      im.set_data(frame)
-      return [im]
-    interval = 1000/framerate
+        im.set_data(frame)
+        return [im]
+    interval = 1000 / framerate
     anim = animation.FuncAnimation(fig=fig, func=update, frames=frames,
-                                   interval=interval, blit=True, repeat=False)
+                                  interval=interval, blit=True, repeat=False)
     return HTML(anim.to_html5_video())
 
-# Seed numpy's global RNG so that cell outputs are deterministic. We also try to
-# use RandomState instances that are local to a single cell wherever possible.
-np.random.seed(42)
+# Seed numpy's global RNG for deterministic outputs
+#np.random.seed(42)
 
-def renderPicture(physics):
-    scene_option = mujoco.wrapper.core.MjvOption()
-    scene_option.flags[enums.mjtVisFlag.mjVIS_JOINT] = True
-    pixels = physics.render(scene_option=scene_option)
-    PIL.Image.fromarray(pixels)
+# Setup
+duration = 90      # seconds
+framerate = 30     # Hz
+max_steps = duration * framerate
+
+# Load the trained model
+model_path = "./trained_models/hand_policy.zip"
+model = SAC.load(model_path, env=env)
+print(f"✅ Model loaded from: {model_path}")
+
+# Reset environment
+obs, info = env.reset()
+frames = []
+
+# For rendering with joint visualization
+scene_option = mujoco.wrapper.core.MjvOption()
+scene_option.flags[mujoco.mjtVisFlag.mjVIS_JOINT] = True
+
+# Collect frames
+for _ in range(max_steps):
+    action, _ = model.predict(obs, deterministic=True)
+    obs, reward, terminated, truncated, info = env.step(action)
+    print(reward_composer.get_distance(),reward_composer.get_info())
+    # Render and store frame
+    pixels = physics.render(width=620,height=480,scene_option=scene_option)
+    frames.append(pixels)
+
+    if terminated or truncated:
+        print("Episode finished early.")
+        break
+
+# Display video
+display_video(frames, framerate)

@@ -19,7 +19,7 @@ class RLAgentManager:
     def train_agent(self):
         """Initializes and trains the SAC agent."""
         print("Initializing SAC agent...")
-        
+
         self._model = SAC(
             "MlpPolicy",
             self._env,
@@ -40,15 +40,15 @@ class RLAgentManager:
             name_prefix='sac_model'
         )
 
-        print(f"Starting training for {self._rl_config['total_timesteps']} timesteps...")
+
         self._model.learn(
             total_timesteps=self._rl_config["total_timesteps"],
             progress_bar=True,
             callback=[checkpoint_callback]
         )
-        print("Training finished!")
+
         self._model.save(self._rl_config["model_save_path"])
-        print(f"Model saved to {self._rl_config['model_save_path']}")
+
 
     def evaluate_agent(self, num_episodes: int = 1, render: bool = True):
         """Evaluates the loaded agent."""
