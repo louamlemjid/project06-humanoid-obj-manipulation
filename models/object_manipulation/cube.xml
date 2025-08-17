@@ -8,7 +8,7 @@
       <freejoint name="cube_joint"/>
       <geom name="cube_geom" 
             type="box" 
-            size="0.025 0.025 0.045" 
+            size="0.025 0.025 0.065" 
             material="cube_material"
             condim="6" 
             priority="1"
