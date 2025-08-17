@@ -14,7 +14,7 @@
             priority="1"
             friction="0.8 0.01 0.003"
             density="1000"/>
-      <inertial pos="0 0 0" mass="1" diaginertia="0.0001 0.0001 0.0001"/>
+      <inertial pos="0 0 0" mass="0.3" diaginertia="0.0001 0.0001 0.0001"/>
     </body>
   </worldbody>
 </mujoco>
