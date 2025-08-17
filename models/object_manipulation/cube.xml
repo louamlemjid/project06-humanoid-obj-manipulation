@@ -4,7 +4,7 @@
   </asset>
 
   <worldbody>
-    <body name="cube" pos="0.3 0.11 0.025">
+    <body name="cube" pos="0.32 0.11 0.025">
       <freejoint name="cube_joint"/>
       <geom name="cube_geom" 
             type="box" 
